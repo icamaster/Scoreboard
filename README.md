@@ -1,1 +1,3 @@
 # Scoreboard
+
+Simple web scoreboard
