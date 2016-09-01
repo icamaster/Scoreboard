@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wii Scoreboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="jumbotron">
+        <div class="container">
+            <h1 style="text-align:center; font-size:100px ">Wii Score Board</h1>
+            <div class="row">
+                <div class="col-xs-6" style="text-align:right; font-size:50px; color:#0090FF">Cez : <span id="score-0-n">0</span>
+                    <br>
+                    <button type="button" class="btn btn-default btn-lg" player-index="0">WIN</button>
+                </div>
+                <div class="col-xs-6" ; style="font-size:50px; color:#FF0030">Rox : <span id="score-1-n">0</span>
+                    <br>
+                    <button type="button" class="btn btn-default btn-lg" player-index="1">WIN</button>
+                </div>
+            </div>
+            <div id="alertz"></div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+    function player(name, score) {
+        this.name = name;
+        this.score = score;
+        this.increment = function() {
+            this.score++;
+        }
+
+    }
+
+    var players = [];
+    players[0] = new player("Cez", 0);
+    players[1] = new player("Rox", 0);
+
+    $("button").click(function() {
+        var index = $(this).attr("player-index");
+        players[index].increment();
+        $("#score-" + index + "-n").text(players[index].score);
+        if (players[index].score >= 10) {
+            alert(players[index].name + " WINS!");
+            $("#alertz").html('<div class="alert alert-info" style="text-align:center;" >' + players[index].name + 'WINS!!!</div>');
+        };
+    });
+    </script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+</body>
+
+</html>
